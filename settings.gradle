@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':component_library', ':module_business', ':module_me', ':module_message', ':module_sale_order', ':module_purchase_order', ':module_stocks_order', ':module_map'

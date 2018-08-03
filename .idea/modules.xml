@@ -4,6 +4,14 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/KingdeeBusiness.iml" filepath="$PROJECT_DIR$/KingdeeBusiness.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component_library/component_library.iml" filepath="$PROJECT_DIR$/component_library/component_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_business/module_business.iml" filepath="$PROJECT_DIR$/module_business/module_business.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_map/module_map.iml" filepath="$PROJECT_DIR$/module_map/module_map.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_me/module_me.iml" filepath="$PROJECT_DIR$/module_me/module_me.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_message/module_message.iml" filepath="$PROJECT_DIR$/module_message/module_message.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_purchase_order/module_purchase_order.iml" filepath="$PROJECT_DIR$/module_purchase_order/module_purchase_order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_sale_order/module_sale_order.iml" filepath="$PROJECT_DIR$/module_sale_order/module_sale_order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_stocks_order/module_stocks_order.iml" filepath="$PROJECT_DIR$/module_stocks_order/module_stocks_order.iml" />
     </modules>
   </component>
 </project>

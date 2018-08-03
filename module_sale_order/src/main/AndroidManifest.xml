@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fangyi.kingdee.module_sale_order">
+
+    <application android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".MainActivity" />
+    </application>
+
+</manifest>

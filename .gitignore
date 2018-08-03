@@ -65,3 +65,14 @@ fastlane/test_output
 fastlane/readme.md
 
 app/libs/
+app/src/main/res/drawable-v24/
+app/src/main/res/mipmap-anydpi-v26/
+module_business/libs/
+module_business/src/main/res/drawable/
+module_map/libs/
+module_me/libs/
+module_me/src/main/res/drawable/
+module_message/libs/
+module_purchase_order/libs/
+module_sale_order/libs/
+module_stocks_order/libs/
