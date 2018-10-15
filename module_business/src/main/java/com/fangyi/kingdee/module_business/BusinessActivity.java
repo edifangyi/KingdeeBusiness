@@ -20,6 +20,11 @@ public class BusinessActivity extends BaseActivity {
     }
 
     @Override
+    protected void findViewById() {
+
+    }
+
+    @Override
     protected void init(Bundle savedInstanceState) {
 
 

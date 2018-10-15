@@ -28,7 +28,7 @@ public class RxHelper {
                         if (result != null && result.success()) {
                             return createData(result.data);
                         } else {
-                            return Observable.error(new ServerException(result.message));
+                            return Observable.error(new ServerException(result.code, result.message));
                         }
                     }
                 });

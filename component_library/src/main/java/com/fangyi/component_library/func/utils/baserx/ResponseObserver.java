@@ -58,6 +58,9 @@ public abstract class ResponseObserver<T> extends DefaultObserver<T> {
 
     @Override
     public void onError(Throwable e) {
+        if (iView != null) {
+            iView.dismissLoading();
+        }
         e.printStackTrace();
         String message = e.getMessage();
         _onError(message);

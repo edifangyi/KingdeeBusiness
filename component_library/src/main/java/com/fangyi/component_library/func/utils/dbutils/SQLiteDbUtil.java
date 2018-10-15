@@ -532,6 +532,91 @@ public class SQLiteDbUtil {
     }
 
     /**
+     * 根据指定条件查询一条数据
+     *
+     * @param c             要查询的对象类
+     * @param selection     要查询的条件字段
+     * @param selectionArgs 要查询的条件字段对应的值
+     * @param <T>           泛型对象
+     * @return 查询出来的数据对象
+     */
+    public <T> List<T> query(Class<T> c, String selection, String[] selectionArgs) {
+
+        if (c == null) {
+            return null;
+        }
+
+        String TABLE_NAME = JavaReflectUtil.getClassName(c);
+        List<T> lists = null;
+        Cursor cursor = null;
+        try {
+            open();
+            cursor = sqLiteDatabase.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+            if (cursor == null) {
+                return null;
+            }
+            while (cursor.moveToNext()) {
+                if (lists == null) {
+                    lists = new ArrayList<>();
+                }
+                lists.add(newInstance(c, cursor));
+            }
+            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            close();
+        }
+        return lists;
+    }
+
+    /**
+     * 根据指定条件查询一条数据
+     *
+     * @param c             要查询的对象类
+     * @param selection     要查询的条件字段
+     * @param selectionArgs 要查询的条件字段对应的值
+     * @param <T>           泛型对象
+     * @return 查询出来的数据对象
+     */
+    public <T> List<T> query(Class c, Class<T> d, String[] columns, String selection, String[] selectionArgs, String groupBy) {
+
+        if (c == null) {
+            return null;
+        }
+
+        String TABLE_NAME = JavaReflectUtil.getClassName(c);
+        List<T> lists = null;
+        Cursor cursor = null;
+        try {
+            open();
+            cursor = sqLiteDatabase.query(TABLE_NAME, columns, selection, selectionArgs, groupBy, null, null);
+            if (cursor == null) {
+
+                return null;
+            }
+            while (cursor.moveToNext()) {
+                if (lists == null) {
+                    lists = new ArrayList<>();
+                }
+                lists.add(newInstance(d, cursor));
+            }
+            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            close();
+        }
+        return lists;
+    }
+
+    /**
      * 执行Sql语句建表，插入，修改，删除
      *
      * @param sql 要执行的sqk语句
@@ -672,39 +757,6 @@ public class SQLiteDbUtil {
 
 
     /**
-     * =============================================================================================
-     *
-     * 登录
-     *
-     * =============================================================================================
-     */
-
-    /**
-     * 查找 用户 数据
-     */
-    public <T> T queryUserSysID(Class<T> c, String userSysID) {
-        if (c == null) {
-            return null;
-        }
-        String TABLE_NAME = JavaReflectUtil.getClassName(c);
-        Cursor cursor = null;
-        try {
-            cursor = sqLiteDatabase.query(TABLE_NAME, null, "user_sys_id=?", new String[]{userSysID}, null, null, null);
-            if (cursor == null) {
-                return null;
-            }
-            if (cursor.moveToNext()) {
-                return newInstance(c, cursor);
-            }
-            cursor.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
-    /**
      * 将资料下载的数据库插入数据库
      *
      * @param insertSqlList 将执行的插入语句
@@ -716,13 +768,6 @@ public class SQLiteDbUtil {
         }
     }
 
-    /**
-     * 根据用户ID，删除UI表
-     */
-    public void deleteDevice(String tableName, String userSysID) {
-
-        execSQL("delete from " + tableName + " WHERE user_sys_id='" + userSysID + "'");
-    }
 
     /**
      * =============================================================================================

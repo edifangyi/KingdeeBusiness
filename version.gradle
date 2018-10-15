@@ -20,28 +20,51 @@ ext {
             arouter           : 'com.alibaba:arouter-api:1.3.1',
 
             //权限
-            permission        : 'com.yanzhenjie:permission:2.0.0-rc11',
+            permission        : 'com.yanzhenjie:permission:2.0.0-rc12',
 
+            //Log
             klog              : 'com.github.zhaokaiqiang.klog:library:1.6.0',
 
+            //网络服务
             kalle             : 'com.yanzhenjie:kalle:0.1.3',
             fastjson          : 'com.alibaba:fastjson:1.1.68.android',
 
+            //Rxjava
             rxbinding         : 'com.jakewharton.rxbinding2:rxbinding:2.1.1',
             rxjava2           : 'io.reactivex.rxjava2:rxjava:2.1.1',
 
-            baseAdapter       : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40',
-            materialDialogs   : 'com.afollestad.material-dialogs:core:0.9.6.0',
+            //Eventbus
+            eventbus          : 'org.greenrobot:eventbus:3.1.1',
 
+            //阿里推送
+            aliCloudPush      : 'com.aliyun.ams:alicloud-android-push:3.1.3',
+            coolindicator     : 'com.coolindicator.sdk:coolindicator:1.0.0-beta',
+
+            //状态页面
+            loadsir           : 'com.kingja.loadsir:loadsir:1.3.6',
+
+            //Adapter
+            baseAdapter       : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40',
+
+            //下拉上划
             SmartRefreshLayout: 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-10',
             SmartRefreshHeader: 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-10',
 
+            //底部导航栏
+            navigationView    : 'me.majiajie:pager-bottom-tab-strip:2.2.5',
+
+            //下拉选择框
+            spinner           : 'com.jaredrummler:material-spinner:1.2.5',
+
+            //Dialogs
+            materialDialogs   : 'com.afollestad.material-dialogs:core:0.9.6.0',
+
+            //图片加载库
             glideCompile      : 'com.github.bumptech.glide:compiler:4.7.1',
             glide             : 'com.github.bumptech.glide:glide:4.7.1',
 
-            navigationView    : 'me.majiajie:pager-bottom-tab-strip:2.2.5',
+            //动画
+            lottie         : 'com.airbnb.android:lottie:2.5.5',
 
-            aliCloudPush      : 'com.aliyun.ams:alicloud-android-push:3.1.3',
-            coolindicator     : 'com.coolindicator.sdk:coolindicator:1.0.0-beta',
     ]
 }

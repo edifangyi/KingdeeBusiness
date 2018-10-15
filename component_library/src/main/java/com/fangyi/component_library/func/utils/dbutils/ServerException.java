@@ -6,7 +6,14 @@ package com.fangyi.component_library.func.utils.dbutils;
  * on 2016.09.10:16
  */
 public class ServerException extends Exception {
-    public ServerException(String msg) {
+    private String code;
+
+    public ServerException(String code, String msg) {
         super(msg);
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
     }
 }

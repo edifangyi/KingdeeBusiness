@@ -34,15 +34,18 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(getLayoutId());
+
         mActivity = this;
         mContext = this;
         mHandler = new Handler();
         mSharedPrefUtil = new ZXSharedPrefUtil(mContext);
-
+        findViewById();
         init(savedInstanceState);
     }
 
     protected abstract int getLayoutId();
+
+    protected abstract void findViewById();
 
     protected abstract void init(Bundle savedInstanceState);
 

@@ -1,13 +1,12 @@
 package com.fangyi.component_library.app;
 
-import android.view.View;
 import android.widget.Toast;
 
 import com.fangyi.component_library.base.BaseModel;
 import com.fangyi.component_library.base.BasePresenter;
 import com.fangyi.component_library.base.MvpLazyFragment;
-import com.fangyi.component_library.mvp.IView;
 import com.fangyi.component_library.func.widget.dialog.QMUITipDialog;
+import com.fangyi.component_library.mvp.IView;
 
 /**
  * ================================================
@@ -28,6 +27,10 @@ public abstract class MyBaseLazyFragment<P extends BasePresenter, M extends Base
 
     @Override
     public void showLoading(String message) {
+        if (tipDialog != null) {
+            tipDialog.dismiss();
+        }
+
         tipDialog = new QMUITipDialog.Builder(mActivity)
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
                 .setTipWord(message)
@@ -43,7 +46,7 @@ public abstract class MyBaseLazyFragment<P extends BasePresenter, M extends Base
 
     @Override
     public void dismissLoading() {
-        if (tipDialog != null || tipDialog.isShowing()) {
+        if (tipDialog != null && tipDialog.isShowing()) {
             tipDialog.dismiss();
         }
     }
@@ -51,6 +54,9 @@ public abstract class MyBaseLazyFragment<P extends BasePresenter, M extends Base
 
     @Override
     public void showErrorToast(String message) {
+        if (tipDialog != null) {
+            tipDialog.dismiss();
+        }
         tipDialog = new QMUITipDialog.Builder(mActivity)
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_FAIL)
                 .setTipWord(message)
@@ -62,8 +68,8 @@ public abstract class MyBaseLazyFragment<P extends BasePresenter, M extends Base
 
     @Override
     public void onDestroy() {
-        dismissLoading();
         super.onDestroy();
+        dismissLoading();
     }
 
     @Override

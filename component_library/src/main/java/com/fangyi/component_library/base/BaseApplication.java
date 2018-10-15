@@ -13,6 +13,10 @@ import com.fangyi.component_library.BuildConfig;
 import com.fangyi.component_library.config.KingdeeAppConfig;
 import com.fangyi.component_library.config.KingdeeUrlConfig;
 import com.fangyi.component_library.func.utils.Utils;
+import com.fangyi.component_library.func.utils.loadsir.EmptyCallback;
+import com.fangyi.component_library.func.utils.loadsir.ErrorCallback;
+import com.fangyi.component_library.func.utils.loadsir.LoadingCallback;
+import com.kingja.loadsir.core.LoadSir;
 import com.yanzhenjie.kalle.Kalle;
 import com.yanzhenjie.kalle.KalleConfig;
 import com.yanzhenjie.kalle.connect.BroadcastNetwork;
@@ -49,7 +53,14 @@ public abstract class BaseApplication extends Application {
                 .network(new BroadcastNetwork(this))
                 .addInterceptor(new LoggerInterceptor("KalleSample", BuildConfig.DEBUG))
                 .build());
-        
+
+        LoadSir.beginBuilder()
+                .addCallback(new ErrorCallback())
+                .addCallback(new EmptyCallback())
+                .addCallback(new LoadingCallback())
+                .setDefaultCallback(LoadingCallback.class)
+                .commit();
+
         initCloudChannel(this);
     }
 
@@ -57,7 +68,6 @@ public abstract class BaseApplication extends Application {
         super.attachBaseContext(base);
         MultiDex.install(this);
     }
-
 
 
     /**

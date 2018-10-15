@@ -1,7 +1,5 @@
 package com.fangyi.component_library.mvp;
 
-import android.view.View;
-
 /**
  * ================================================
  * 作    者：FANGYI <87649669@qq.com>

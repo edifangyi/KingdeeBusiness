@@ -82,7 +82,7 @@ android {
             def newApkName
 
             if (variant.buildType.debuggable) {
-                newApkName = "debug_" + getTime() + "_" + defaultConfig.versionName + "-" + defaultConfig.versionCode + ".apk"
+                newApkName = "debug_" + defaultConfig.versionName + "-" + defaultConfig.versionCode + ".apk"
             } else {
                 newApkName = getTime() + "-" + defaultConfig.versionName + "-" + defaultConfig.versionCode + ".apk"
             }

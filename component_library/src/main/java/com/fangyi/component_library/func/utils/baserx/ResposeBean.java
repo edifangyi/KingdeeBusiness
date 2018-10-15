@@ -9,12 +9,10 @@ public class ResposeBean<T> implements Serializable {
     public String code;
     public String message;
 
-
     public T data;
 
-
     public boolean success() {
-        return "100".equals(code);
+        return ResponseUtil.CODE_200.equals(message);
     }
 
     @Override

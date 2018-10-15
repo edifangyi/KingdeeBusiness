@@ -1,13 +1,18 @@
 package com.fangyi.component_library.app;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.fangyi.component_library.base.BaseModel;
 import com.fangyi.component_library.base.BasePresenter;
 import com.fangyi.component_library.base.MvpBaseActivity;
-import com.fangyi.component_library.mvp.IView;
+import com.fangyi.component_library.func.utils.loadsir.LoadingCallback;
 import com.fangyi.component_library.func.widget.dialog.QMUITipDialog;
+import com.fangyi.component_library.mvp.IView;
+import com.kingja.loadsir.callback.Callback;
+import com.kingja.loadsir.core.LoadService;
+import com.kingja.loadsir.core.LoadSir;
 
 /**
  * ================================================
@@ -18,8 +23,26 @@ import com.fangyi.component_library.func.widget.dialog.QMUITipDialog;
  * ================================================
  */
 public abstract class MyBaseActivity<P extends BasePresenter, M extends BaseModel> extends MvpBaseActivity<P, M> implements IView {
+    public LoadService mLoadService;
+    private QMUITipDialog mTipDialog;
 
-    private QMUITipDialog tipDialog;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mLoadService = LoadSir.getDefault().register(this, new Callback.OnReloadListener() {
+            @Override
+            public void onReload(View v) {
+
+            }
+        });
+
+        if (isShowLoadService())
+            mLoadService.showCallback(LoadingCallback.class);
+        else
+            mLoadService.showSuccess();
+    }
+
+    protected abstract boolean isShowLoadService();
 
     @Override
     public void showLoading() {
@@ -28,12 +51,16 @@ public abstract class MyBaseActivity<P extends BasePresenter, M extends BaseMode
 
     @Override
     public void showLoading(String message) {
-        tipDialog = new QMUITipDialog.Builder(mActivity)
+        if (mTipDialog != null) {
+            mTipDialog.dismiss();
+        }
+
+        mTipDialog = new QMUITipDialog.Builder(mActivity)
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
                 .setTipWord(message)
                 .create();
 
-        tipDialog.show();
+        mTipDialog.show();
     }
 
     @Override
@@ -43,8 +70,8 @@ public abstract class MyBaseActivity<P extends BasePresenter, M extends BaseMode
 
     @Override
     public void dismissLoading() {
-        if (tipDialog != null || tipDialog.isShowing()) {
-            tipDialog.dismiss();
+        if (mTipDialog != null && mTipDialog.isShowing()) {
+            mTipDialog.dismiss();
         }
     }
 
@@ -56,18 +83,21 @@ public abstract class MyBaseActivity<P extends BasePresenter, M extends BaseMode
 
     @Override
     public void showErrorToast(String message) {
-        tipDialog = new QMUITipDialog.Builder(mActivity)
+        if (mTipDialog != null) {
+            mTipDialog.dismiss();
+        }
+        mTipDialog = new QMUITipDialog.Builder(mActivity)
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_FAIL)
                 .setTipWord(message)
                 .setDuration(2000)
                 .create();
 
-        tipDialog.show();
+        mTipDialog.show();
     }
 
     @Override
     protected void onDestroy() {
-        dismissLoading();
         super.onDestroy();
+        dismissLoading();
     }
 }

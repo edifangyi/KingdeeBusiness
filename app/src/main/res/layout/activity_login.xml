@@ -3,7 +3,7 @@
     android:id="@+id/ll_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/system_login_bg">
+    android:background="@mipmap/app_login_bg">
 
     <TextView
         android:id="@+id/tv_login_title"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@null"
-            android:drawableLeft="@drawable/system_login_ic_username"
+            android:drawableLeft="@drawable/app_login_ic_username"
             android:drawablePadding="10dp"
             android:hint="请输入注册手机号"
             android:padding="10dp"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@null"
-            android:drawableLeft="@drawable/system_login_ic_password"
+            android:drawableLeft="@drawable/app_login_ic_password"
             android:drawablePadding="10dp"
             android:hint="请输入密码"
             android:inputType="textPassword"
@@ -71,7 +71,7 @@
                 android:layout_height="40dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/system_login_bg_btn"
+                android:background="@drawable/app_login_bg_btn"
                 android:text="登 录"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
@@ -82,7 +82,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/system_login_bg_btn"
+                android:background="@drawable/app_login_bg_btn"
                 android:text="注 册"
                 android:textColor="@color/white"
                 android:textSize="16sp" />

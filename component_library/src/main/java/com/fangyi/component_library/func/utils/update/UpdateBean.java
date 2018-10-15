@@ -19,59 +19,58 @@ public class UpdateBean {
      * ApkSize : 15.83M
      */
 
-    private boolean IsLatest;//是否是最新的
-    private boolean IsForced;//是否强制升级
-    private String NewVersion;//版本号
-    private String UpdateContent;//升级日志
-    private String ApkUrl;//下载链接
-    private String ApkSize;//安装包大小
-
+    private boolean isLatest;//是否是最新的
+    private boolean isForced;//是否强制升级
+    private String newVersion;//版本号
+    private String updateContent;//升级日志
+    private String apkUrl;//下载链接
+    private String apkSize;//安装包大小
 
     public boolean isLatest() {
-        return IsLatest;
+        return isLatest;
     }
 
     public void setLatest(boolean latest) {
-        IsLatest = latest;
+        isLatest = latest;
     }
 
     public boolean isForced() {
-        return IsForced;
+        return isForced;
     }
 
     public void setForced(boolean forced) {
-        IsForced = forced;
+        isForced = forced;
     }
 
     public String getNewVersion() {
-        return NewVersion;
+        return newVersion;
     }
 
     public void setNewVersion(String newVersion) {
-        NewVersion = newVersion;
+        this.newVersion = newVersion;
     }
 
     public String getUpdateContent() {
-        return UpdateContent;
+        return updateContent;
     }
 
     public void setUpdateContent(String updateContent) {
-        UpdateContent = updateContent;
+        this.updateContent = updateContent;
     }
 
     public String getApkUrl() {
-        return ApkUrl;
+        return apkUrl;
     }
 
     public void setApkUrl(String apkUrl) {
-        ApkUrl = apkUrl;
+        this.apkUrl = apkUrl;
     }
 
     public String getApkSize() {
-        return ApkSize;
+        return apkSize;
     }
 
     public void setApkSize(String apkSize) {
-        ApkSize = apkSize;
+        this.apkSize = apkSize;
     }
 }

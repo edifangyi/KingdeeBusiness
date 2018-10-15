@@ -68,5 +68,8 @@ dependencies {
     api rootProject.ext.dependencies.aliCloudPush
     api rootProject.ext.dependencies.coolindicator
     api files('libs/ksoap2-android-assembly-3.0.0-jar-with-dependencies.jar')
-
+    api rootProject.ext.dependencies.spinner
+    api rootProject.ext.dependencies.eventbus
+    api rootProject.ext.dependencies.loadsir
+    api rootProject.ext.dependencies.lottie
 }
