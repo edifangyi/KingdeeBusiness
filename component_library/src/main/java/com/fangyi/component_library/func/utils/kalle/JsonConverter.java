@@ -58,7 +58,7 @@ public class JsonConverter implements Converter {
                 baseRespose.setMessage(mContext.getString(R.string.http_server_data_format_error));
             }
 
-            if (baseRespose.getCode() == 1) { // The server successfully processed the business.
+            if (baseRespose.getCode() == 20000) { // The server successfully processed the business.
                 try {
                     succeedData = JSON.parseObject(baseRespose.getData(), succeed);
                 } catch (Exception e) {

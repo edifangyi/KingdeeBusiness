@@ -43,7 +43,7 @@ public class UpdateUtils {
         String version = getAppVersionName();
 
         Kalle.get(mUrl)
-                .param("version", getAppVersionName())
+//                .param("version", getAppVersionName())
                 .perform(new ResponseCallback<UpdateBean>(mContext) {
                     @Override
                     protected void onResponse(UpdateBean response) {
@@ -54,13 +54,13 @@ public class UpdateUtils {
                             if (mOnUpdateListener != null)
                                 mOnUpdateListener.onNoUpdate();
                             return;
-                        } else if (response.isLatest()) {
+                        } else if (response.isIsLatest()) {
                             if (mOnUpdateListener != null)
                                 mOnUpdateListener.onNoUpdate();
                             return;
                         }
 
-                        String content = response.isForced() ? "您需要更新应用才可以继续使用\n\n" : "";
+                        String content = response.isIsForced() ? "您需要更新应用才可以继续使用\n\n" : "";
                         content += "最新版本：v" + response.getNewVersion() + "\n";
                         content += "新版本大小：" + response.getApkSize() + "\n\n";
                         content += "更新内容\n" + response.getUpdateContent();
@@ -118,14 +118,14 @@ public class UpdateUtils {
                                                     });
 
                                         }).show())
-                                .negativeText(response.isForced() ? "" : "以后再说")
+                                .negativeText(response.isIsForced() ? "" : "以后再说")
                                 .onNegative((dialog, which) -> {
                                     if (mOnUpdateListener != null)
                                         mOnUpdateListener.onLater();
                                 })
-                                .neutralText(response.isForced() ? "退出应用" : "忽略该版")
+                                .neutralText(response.isIsForced() ? "退出应用" : "忽略该版")
                                 .onNeutral((dialog, which) -> {
-                                    if (response.isForced()) {//退出应用
+                                    if (response.isIsForced()) {//退出应用
                                         Toast.makeText(mContext, "即将退出应用", Toast.LENGTH_SHORT).show();
                                         new Handler().postDelayed(() -> ((Activity) mContext).onBackPressed(), 1500);
                                     } else {//忽略该版

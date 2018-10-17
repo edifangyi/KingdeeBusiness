@@ -1,6 +1,8 @@
 package com.fangyi.kingdee.mvp.contract;
 
 import com.fangyi.component_library.base.BasePresenter;
+import com.fangyi.component_library.func.utils.dbutils.bean.DeviceBill;
+import com.fangyi.component_library.func.utils.dbutils.bean.DeviceUI;
 import com.fangyi.component_library.func.utils.dbutils.bean.Users;
 import com.fangyi.component_library.mvp.IModel;
 import com.fangyi.component_library.mvp.IView;
@@ -24,6 +26,10 @@ public interface LoginContract {
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
     interface Model extends IModel {
         Observable<Users> doLogin(String username, String password);
+
+        Observable<DeviceUI> getDeviceUI(String userSysId);
+
+        Observable<DeviceBill> getDeviceBill(String userSysId);
     }
 
     //方法

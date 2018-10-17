@@ -11,35 +11,35 @@ package com.fangyi.component_library.func.utils.update;
 public class UpdateBean {
 
     /**
-     * IsLatest : false
-     * IsForced : false
-     * NewVersion : 1.0.1
-     * UpdateContent : 1.测试一下；\n2.在测试一下
-     * ApkUrl : http://211.149.200.136:5678/nedu.apk
-     * ApkSize : 15.83M
+     * isLatest : false
+     * isForced : false
+     * newVersion : 1.0.1
+     * updateContent : 1.测试一下；\n2.在测试一下
+     * apkUrl : http://211.149.200.136:5678/nedu.apk
+     * apkSize : 15.83M
      */
 
-    private boolean isLatest;//是否是最新的
-    private boolean isForced;//是否强制升级
-    private String newVersion;//版本号
-    private String updateContent;//升级日志
-    private String apkUrl;//下载链接
-    private String apkSize;//安装包大小
+    private boolean isLatest;
+    private boolean isForced;
+    private String newVersion;
+    private String updateContent;
+    private String apkUrl;
+    private String apkSize;
 
-    public boolean isLatest() {
+    public boolean isIsLatest() {
         return isLatest;
     }
 
-    public void setLatest(boolean latest) {
-        isLatest = latest;
+    public void setIsLatest(boolean isLatest) {
+        this.isLatest = isLatest;
     }
 
-    public boolean isForced() {
+    public boolean isIsForced() {
         return isForced;
     }
 
-    public void setForced(boolean forced) {
-        isForced = forced;
+    public void setIsForced(boolean isForced) {
+        this.isForced = isForced;
     }
 
     public String getNewVersion() {

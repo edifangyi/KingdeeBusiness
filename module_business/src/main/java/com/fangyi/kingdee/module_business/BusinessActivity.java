@@ -1,8 +1,13 @@
 package com.fangyi.kingdee.module_business;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 
 import com.fangyi.component_library.base.BaseActivity;
+import com.fangyi.component_library.base.BasePagerAdapter;
+
+import java.util.ArrayList;
 
 /**
  * ================================================
@@ -13,6 +18,8 @@ import com.fangyi.component_library.base.BaseActivity;
  * ================================================
  */
 public class BusinessActivity extends BaseActivity {
+
+
 
     @Override
     protected int getLayoutId() {
@@ -28,6 +35,10 @@ public class BusinessActivity extends BaseActivity {
     protected void init(Bundle savedInstanceState) {
 
 
+
+    }
+
+    private void initView() {
 
     }
 }

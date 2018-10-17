@@ -116,10 +116,6 @@ dependencies {
         implementation project(':module_map')
         implementation project(':module_me')
         implementation project(':module_message')
-
-        implementation project(':module_purchase_order')
-        implementation project(':module_sale_order')
-        implementation project(':module_stocks_order')
     }
 
 }

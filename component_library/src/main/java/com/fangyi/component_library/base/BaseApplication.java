@@ -13,6 +13,7 @@ import com.fangyi.component_library.BuildConfig;
 import com.fangyi.component_library.config.KingdeeAppConfig;
 import com.fangyi.component_library.config.KingdeeUrlConfig;
 import com.fangyi.component_library.func.utils.Utils;
+import com.fangyi.component_library.func.utils.kalle.JsonConverter;
 import com.fangyi.component_library.func.utils.loadsir.EmptyCallback;
 import com.fangyi.component_library.func.utils.loadsir.ErrorCallback;
 import com.fangyi.component_library.func.utils.loadsir.LoadingCallback;
@@ -51,6 +52,7 @@ public abstract class BaseApplication extends Application {
                 .cookieStore(DBCookieStore.newBuilder(this).build())
                 .cacheStore(DiskCacheStore.newBuilder(KingdeeAppConfig.get().PATH_APP_CACHE).build())
                 .network(new BroadcastNetwork(this))
+                .converter(new JsonConverter(this))
                 .addInterceptor(new LoggerInterceptor("KalleSample", BuildConfig.DEBUG))
                 .build());
 

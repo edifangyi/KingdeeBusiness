@@ -67,4 +67,8 @@ dependencies {
 
     api project(':component_library')
     annotationProcessor rootProject.ext.dependencies.arouterCompile
+
+    implementation project(':module_purchase_order')
+    implementation project(':module_sale_order')
+    implementation project(':module_stocks_order')
 }

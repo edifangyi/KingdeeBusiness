@@ -35,13 +35,14 @@ public abstract class BaseFragment extends Fragment {
         mActivity = (BaseActivity) getActivity();
         mContext = getActivity();
         mHandler = new Handler();
-
+        findViewById();
         init(savedInstanceState);
-
         return rootView;
     }
 
     protected abstract int getLayoutId();
+
+    protected abstract void findViewById();
 
     protected abstract void init(Bundle savedInstanceState);
 }

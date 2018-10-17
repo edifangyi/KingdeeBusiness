@@ -21,6 +21,11 @@ public class BasePagerAdapter extends FragmentStatePagerAdapter {
     ArrayList<Fragment> mFragments;
     ArrayList<String> mTitles;
 
+    public BasePagerAdapter(FragmentManager fm, ArrayList<Fragment> fragments) {
+        super(fm);
+        mFragments = fragments;
+    }
+
     public BasePagerAdapter(FragmentManager fm, ArrayList<Fragment> fragments, ArrayList<String> titles) {
         super(fm);
         mFragments = fragments;
@@ -48,7 +53,7 @@ public class BasePagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return mTitles.get(position);
+        return mTitles != null ? mTitles.get(position) : "";
     }
 
 }

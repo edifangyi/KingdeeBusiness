@@ -24,9 +24,6 @@ public class KingdeeUrlConfig {
 
     public static String DeviceID = "";
 
-    public static final String URL_ROOT = "http://211.149.200.136:5678";
-
-    public static final String upData = URL_ROOT + "/ajax/update.ashx";
-
+    public static final String upData = "https://edifangyi.github.io/kingdeeBusinessUpdate.json";
 
 }

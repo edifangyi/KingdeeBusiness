@@ -5,6 +5,8 @@ import android.content.Context;
 import com.fangyi.component_library.base.BaseActivity;
 import com.fangyi.component_library.config.KingdeeSharedPref;
 import com.fangyi.component_library.func.utils.ZXSharedPrefUtil;
+import com.fangyi.component_library.func.utils.dbutils.bean.DeviceBill;
+import com.fangyi.component_library.func.utils.dbutils.bean.DeviceUI;
 import com.fangyi.component_library.func.utils.dbutils.bean.Users;
 
 /**
@@ -19,6 +21,8 @@ public class UserManage {
     private static UserManage manager;
 
     private Users mUsers;
+    private DeviceUI mDeviceUI;
+    private DeviceBill mDeviceBill;
 
     public static UserManage getInstance() {
         if (manager == null) {
@@ -37,5 +41,21 @@ public class UserManage {
 
     public Users getUsers() {
         return mUsers;
+    }
+
+    public void setDeviceUI(DeviceUI deviceUI) {
+        mDeviceUI = deviceUI;
+    }
+
+    public DeviceUI getDeviceUI() {
+        return mDeviceUI;
+    }
+
+    public void setDeviceBill(DeviceBill deviceBill) {
+        mDeviceBill = deviceBill;
+    }
+
+    public DeviceBill getDeviceBill() {
+        return mDeviceBill;
     }
 }

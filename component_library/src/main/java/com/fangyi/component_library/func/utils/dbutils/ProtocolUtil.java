@@ -13,7 +13,8 @@ public class ProtocolUtil {
     private static String deviceuiSql = "insert into deviceui(user_sys_id,kis_name,table_22,table_23,table_24,table_25,table_stock_query,table_stock_summary,table_26,table_27,table_28,table_29,table_sell_query,table_sell_summary,table_sell_ranking,table_30,table_reserve_query,table_reserve_immediate,table_31,table_32,table_33,table_34) values(#fieldNames#)";
     private static String devicebillSql = "insert into devicebill(user_sys_id,company_name,auto_wifi,auto_login,server_ip,auto_notice,imei,registration_code,version,font_title,font_entry,font_header,font_footer) values(#fieldNames#)";
     private static String devicebillsetSql = "insert into deviceuiset(" +
-            "user_sys_id,unkonwn," +
+            "user_sys_id," +
+            "unkonwn," +
             "kis_name," +
             "table_name," +
             "a_v," +

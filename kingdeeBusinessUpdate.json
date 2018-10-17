@@ -1,5 +1,5 @@
 {
-    "code": 1,
+    "code": 20000,
     "message": "获取数据成功！",
     "data": {
         "isLatest": false,

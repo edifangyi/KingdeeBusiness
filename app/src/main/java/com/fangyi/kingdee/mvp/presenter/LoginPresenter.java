@@ -8,8 +8,12 @@ import com.fangyi.component_library.config.KingdeeUrlConfig;
 import com.fangyi.component_library.func.manage.UserManage;
 import com.fangyi.component_library.func.utils.PhoneUtils;
 import com.fangyi.component_library.func.utils.baserx.ResponseObserver;
+import com.fangyi.component_library.func.utils.baserx.RxHelper;
+import com.fangyi.component_library.func.utils.baserx.RxSchedulers;
 import com.fangyi.component_library.func.utils.dbutils.ProtocolUtil;
 import com.fangyi.component_library.func.utils.dbutils.SQLiteDbUtil;
+import com.fangyi.component_library.func.utils.dbutils.bean.DeviceBill;
+import com.fangyi.component_library.func.utils.dbutils.bean.DeviceUI;
 import com.fangyi.component_library.func.utils.dbutils.bean.Users;
 import com.fangyi.component_library.func.utils.net.NetConnectionUtil;
 import com.fangyi.component_library.func.utils.net.WSReturnParam;
@@ -17,6 +21,9 @@ import com.fangyi.component_library.func.utils.net.WebService;
 import com.fangyi.kingdee.mvp.contract.LoginContract;
 
 import java.util.List;
+
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Function;
 
 
 /**
@@ -72,11 +79,43 @@ public class LoginPresenter extends LoginContract.Presenter {
     @SuppressLint("CheckResult")
     private void notNetWork(String name, String password) {
 
+//        mModel.doLogin(name, password)
+//                .subscribeWith(new ResponseObserver<Users>(mView) {
+//                    @Override
+//                    protected void _onNext(Users users) {
+//                        UserManage.getInstance().setUser(mActivity, users);
+//                        mView.onLoginSucceed();
+//                    }
+//
+//                    @Override
+//                    protected void _onError(String message) {
+//                        mView.showErrorToast(message);
+//                        mView.onLoginError();
+//                    }
+//                });
+
         mModel.doLogin(name, password)
-                .subscribeWith(new ResponseObserver<Users>(mView) {
+                .flatMap(new Function<Users, ObservableSource<DeviceUI>>() {
                     @Override
-                    protected void _onNext(Users users) {
-                        UserManage.getInstance().setUser(mActivity,users);
+                    public ObservableSource<DeviceUI> apply(Users users) throws Exception {
+                        //处理登录数据
+                        UserManage.getInstance().setUser(mActivity, users);
+                        return mModel.getDeviceUI(users.getUser_sys_id());
+                    }
+                })
+                .flatMap(new Function<DeviceUI, ObservableSource<DeviceBill>>() {
+                    @Override
+                    public ObservableSource<DeviceBill> apply(DeviceUI deviceUI) throws Exception {
+
+                        UserManage.getInstance().setDeviceUI(deviceUI);
+
+                        return mModel.getDeviceBill(UserManage.getInstance().getUsers().getUser_sys_id());
+                    }
+                })
+                .subscribeWith(new ResponseObserver<DeviceBill>() {
+                    @Override
+                    protected void _onNext(DeviceBill deviceBill) {
+                        UserManage.getInstance().setDeviceBill(deviceBill);
                         mView.onLoginSucceed();
                     }
 
@@ -86,6 +125,7 @@ public class LoginPresenter extends LoginContract.Presenter {
                         mView.onLoginError();
                     }
                 });
+
     }
 
     @SuppressLint("CheckResult")
@@ -110,31 +150,12 @@ public class LoginPresenter extends LoginContract.Presenter {
         wsParam.totalPg = 0;
         String protoDeviceBillStr = webService.getData(wsParam, currentPg, "DeviceBill", name);
 
-        List<String> usersSql = ProtocolUtil.getInsertSQL("Users", protoUsersStr);
-        List<String> deviceuiSql = ProtocolUtil.getInsertSQL("DeviceUI", protoDeviceUIStr);
-        List<String> devicebillsetSql = ProtocolUtil.getInsertSQL("DeviceBillSet", protoDeviceBillSetStr);
-        List<String> devicebillSql = ProtocolUtil.getInsertSQL("DeviceBill", protoDeviceBillStr);
+        SQLiteDbUtil.getSQLiteDbUtil().insertDownloadData(ProtocolUtil.getInsertSQL("Users", protoUsersStr));
+        SQLiteDbUtil.getSQLiteDbUtil().insertDownloadData(ProtocolUtil.getInsertSQL("DeviceUI", protoDeviceUIStr));
+        SQLiteDbUtil.getSQLiteDbUtil().insertDownloadData(ProtocolUtil.getInsertSQL("DeviceBillSet", protoDeviceBillSetStr));
+        SQLiteDbUtil.getSQLiteDbUtil().insertDownloadData( ProtocolUtil.getInsertSQL("DeviceBill", protoDeviceBillStr));
 
-        SQLiteDbUtil.getSQLiteDbUtil().insertDownloadData(usersSql);
-        SQLiteDbUtil.getSQLiteDbUtil().insertDownloadData(deviceuiSql);
-        SQLiteDbUtil.getSQLiteDbUtil().insertDownloadData(devicebillsetSql);
-        SQLiteDbUtil.getSQLiteDbUtil().insertDownloadData(devicebillSql);
-
-        mModel.doLogin(name, password)
-                .subscribeWith(new ResponseObserver<Users>(mView) {
-                    @Override
-                    protected void _onNext(Users users) {
-                        UserManage.getInstance().setUser(mActivity, users);
-                        mView.onLoginSucceed();
-                    }
-
-                    @Override
-                    protected void _onError(String message) {
-
-//
-                        mView.onLoginError();
-                    }
-                });
+        notNetWork(name, password);
     }
 
 }
